@@ -163,6 +163,36 @@ let
     '';
   };
 
+  cl-raylib = build-asdf-system {
+    pname = "cl-raylib";
+    version = "0.02-unstable-2024-08-18";
+    src = pkgs.fetchFromGitHub {
+      owner = "longlene";
+      repo = "cl-raylib";
+      rev = "d2ee2cdee84bf070a684a3ce9bf4a8902db975ec";
+      hash = "sha256-X5Yr7tNF9/eR+QAY7Lc2pCQLEsd8IxMEMYOGhYalTGc=";
+    };
+    nativeBuildInputs = with pkgs; [
+      pkg-config
+    ];
+    buildInputs = with pkgs; [
+      raylib
+    ];
+    lispLibs = with self; [
+      cffi
+      cffi-libffi
+      _3d-vectors
+      _3d-matrices
+    ];
+    meta = {
+      description = "Common Lisp binding of raylib";
+      homepage = "https://github.com/longlene/cl-raylib";
+      licenses = pkgs.lib.licenses.mit;
+      maintainers = [ ];
+      platforms = pkgs.lib.platforms.linux;
+    };
+  };
+
   slynk = build-asdf-system {
     pname = "slynk";
     version = "trunk";
